@@ -1,0 +1,28 @@
+<header class="main-header">
+    <div class="header-wrapper">
+      <div class="main-logo">
+        <%= link_to "#", class: "navbar-brand" do %>
+          <i class="fas fa-leaf"></i> Reuseful
+        <% end %>
+      </div>
+      <nav>
+        <ul class="main-menu">
+          <li><a href="#section-2">About</a></li>
+          <li><a href="#section-7">Story</a></li>
+          <li><a href="#section-9">FAQs</a></li>
+          <li><a href="#main-footer">Contact</a></li>
+          <% if @user %>
+          <li>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "Profile", "#", class: "dropdown-item" %>
+              <%= link_to "Add Item", "#", class: "dropdown-item" %>
+            </div>
+          </li>
+          <% else %>
+            <a href="#" class="btn btn-rounded btn-primary">Log In</a>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </header>
