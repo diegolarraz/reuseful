@@ -1,7 +1,0 @@
-<br><br><br><br><br><br>
-
-<%= simple_form_for [ @item, @exchange ] do |f| %>
-  <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
-  <%= f.input :location %>
-  <%= f.submit "Create Exchange", class: "btn btn-primary" %>
-<% end %>

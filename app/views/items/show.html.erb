@@ -4,7 +4,11 @@
       <h1><%= @item.name %></h1>
       <h3><%= @item.user.location %></h3>
       <p><%= @item.description %></p>
-      <%= link_to "Create Exchange", new_item_exchange_path(@item) %>
+      <%= simple_form_for [ @item, @exchange ] do |f| %>
+        <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
+        <%= f.input :location %>
+        <%= f.submit "Create Exchange", class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
