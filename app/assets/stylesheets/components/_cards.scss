@@ -1,0 +1,58 @@
+.card-index {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-index > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-holder :hover {
+  img {
+    transform: scale(1.05);
+    transition: 0.2s;
+  }
+  h2 {
+    opacity: 1;
+  }
+  p {
+    opacity: 1;
+  }
+}
+
+.card-index h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  opacity: .7;
+}
+
+.card-index p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-index-user {
+  padding-left: 8px;
+}
+
+.card-index-info-top {
+  color: black;
+  padding: 16px 16px 4px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-index-info-bottom {
+  color: black;
+  padding: 4px 16px 16px 16px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
