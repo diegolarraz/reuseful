@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
 
   def show
     @exchange = Exchange.new
+    @user = current_user
   end
 
   def new
