@@ -4,7 +4,7 @@
       <%= simple_form_for @item do |f| %>
         <%= f.input :name %>
         <%= f.input :description %>
-        <%= f.input :category %>
+        <%= f.input :category, collection: Item::CATEGORIES %>
         <%= f.submit %>
       <% end %>
     </div>
