@@ -11,14 +11,23 @@
 }
 
 .card-holder :hover {
-  transform: scale(1.05);
-  transition: 0.2s;
+  img {
+    transform: scale(1.05);
+    transition: 0.2s;
+  }
+  h2 {
+    opacity: 1;
+  }
+  p {
+    opacity: 1;
+  }
 }
 
 .card-index h2 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
+  opacity: .7;
 }
 
 .card-index p {
