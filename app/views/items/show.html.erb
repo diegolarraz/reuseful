@@ -7,6 +7,10 @@
       <p>Category: <%= @item.category %></p>
       <%= link_to "Edit item", edit_item_path(@item) %>
       <%= link_to "Remove item", item_path(@item), method: :delete %>
+
+      <% @item.pictures.each do |picture| %>
+        <%= cl_image_tag picture.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
     </div>
   </div>
 </div>
