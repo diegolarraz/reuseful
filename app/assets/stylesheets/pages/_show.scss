@@ -1,0 +1,24 @@
+.siema {
+  width: 100%;
+}
+
+.show-name-location {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    margin: 0;
+  }
+  h1 {
+    margin: 0;
+  }
+}
+
+.booking-form {
+  padding: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  h3 {
+    text-align: center;
+  }
+}

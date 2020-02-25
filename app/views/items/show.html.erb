@@ -1,22 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <% @item.pictures.each do |picture| %>
-      <%= cl_image_tag picture.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
-      <h1><%= @item.name %></h1>
-      <h3><%= @item.user.location %></h3>
-      <p><%= @item.description %></p>
+      <div class="siema">
+        <% @item.pictures.each do |picture| %>
+          <div class="carousel-item active">
+            <%= cl_image_tag picture.key, height: 300, width: 400, crop: :fill %>
+          </div>
+        <% end %>
+      </div>
+      <div class="show-name-location">
+        <h1><%= @item.name.capitalize %></h1>
+        <p><%= @item.user.location.capitalize %></p>
+      </div>
+      <p><%= @item.description.capitalize %></p>
       <%= link_to "Edit item", edit_item_path(@item) %>
       <%= link_to "Remove item", item_path(@item), method: :delete %>
     </div>
     <div class="col-4">
-      <h3>Book an exchange</h3>
-      <%= simple_form_for [ @item, @exchange ] do |f| %>
-        <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
-        <%= f.input :location %>
-        <%= f.submit "Create Exchange", class: "btn btn-primary" %>
-      <% end %>
+      <div class="booking-form">
+        <h3>Book an exchange</h3>
+        <%= simple_form_for [ @item, @exchange ] do |f| %>
+          <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
+          <%= f.input :location %>
+          <%= f.submit "Create Exchange", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
