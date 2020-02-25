@@ -20,7 +20,7 @@
     <div class="booking-form">
       <h3>Book an exchange</h3>
       <%= simple_form_for [ @item, @exchange ] do |f| %>
-        <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
+        <%= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
         <%= f.input :location %>
         <%= f.submit "Create Exchange", class: "btn btn-primary" %>
       <% end %>
