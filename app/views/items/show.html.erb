@@ -4,6 +4,7 @@
       <h1><%= @item.name %></h1>
       <h3><%= @item.user.location %></h3>
       <p><%= @item.description %></p>
+      <%= link_to "Create Exchange", new_item_exchange_path(@item) %>
     </div>
   </div>
 </div>
