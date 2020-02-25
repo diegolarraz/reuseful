@@ -22,29 +22,25 @@ end
 
 puts "Created the users! Creating the items..."
 
-10.times do
+12.times do
   item_attr = {
     name: Faker::House.furniture,
     description: Faker::TvShows::TheFreshPrinceOfBelAir.quote,
     category: Item::CATEGORIES.sample,
     user: User.all.sample
   }
-  item = Item.create!(item_attr)
+  item = Item.new(item_attr)
 
   file = URI.open("https://picsum.photos/400/300.jpg")
   item.pictures.attach(io: file, filename: "#{item.id}.jpg", content_type: 'image/jpg')
-
   file = URI.open("https://picsum.photos/400/300.jpg")
   item.pictures.attach(io: file, filename: "#{item.id}.jpg", content_type: 'image/jpg')
-
-  # # first_file = URI.open("https://i.picsum.photos/id/#{range.sample}/400/300.jpg")
-  # # second_file = URI.open("https://i.picsum.photos/id/#{range.sample}/400/300.jpg")
-
-  # # first_file = Cloudinary::Uploader.upload("https://res.cloudinary.com/annedj/image/upload/v1582644229/Reuseful/Samples/#{i}.jpg")
-  # # second_file = Cloudinary::Uploader.upload("https://res.cloudinary.com/annedj/image/upload/v1582644229/Reuseful/Samples/#{i + 1}.jpg")
-
-  # item.pictures = ["https://res.cloudinary.com/annedj/image/upload/v1582644229/Reuseful/Samples/#{i}.jpg", "https://res.cloudinary.com/annedj/image/upload/v1582644229/Reuseful/Samples/#{i + 1}.jpg"]
-  # i += 2
+  begin
+    item.save!
+  rescue
+    puts "SKIPPED"
+    next
+  end
+  puts "ITEM CREATED"
 end
-
 puts 'Items created!'
