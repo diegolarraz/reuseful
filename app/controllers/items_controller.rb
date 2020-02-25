@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
 
   def index
-    # raise
     @items = Item.all
   end
 
