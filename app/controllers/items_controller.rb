@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user = current_user
     if @item.save
+      flash[:notice] = "Thanks! Your item has been added!"
       redirect_to item_path(@item)
     else
       render :new
@@ -31,6 +32,7 @@ class ItemsController < ApplicationController
   def update
     @item.update(item_params)
     if @item.save
+      flash[:notice] = "Your item has been successfully edited!"
       redirect_to item_path(@item)
     else
       render :edit
@@ -39,6 +41,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
+    flash[:notice] = "Your item has been removed!"
     redirect_to items_path
   end
 

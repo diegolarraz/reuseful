@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_many :exchanges, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  CATEGORIES = %w(clothing furniture appliances electronics DIY garden travel other)
+  CATEGORIES = %w(Clothing Furniture Appliances Electronics DIY Garden Travel Other)
   validates :name, :description, :category, presence: true
   validates :category, inclusion: {in: CATEGORIES}
   validates :description, length: {minimum: 10}
