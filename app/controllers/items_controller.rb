@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @exchange = Exchange.new
   end
 
   def new
