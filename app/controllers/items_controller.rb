@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @exchange = Exchange.new
   end
 
   def new
@@ -51,6 +52,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :category)
+    params.require(:item).permit(:name, :description, :category, pictures: [])
   end
 end

@@ -1,14 +1,28 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8">
-      <% @items.each do |item| %>
-        <%= link_to item_path(item) do %>
-          <h1><%= item.name %></h1>
-        <% end %>
-        <h3><%= item.description %></h3>
-        <p><%= item.user.first_name %></p>
-        <p><%= item.user.location %></p>
+  <h1>All items available for collection</h1>
+  <div class="cards">
+    <% @items.each do |item| %>
+    <div class="card-holder">
+      <%= link_to item_path(item) do %>
+        <div class="card-index">
+          <%= image_tag "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", alt: "alttext" %>
+          <div class="card-index-info">
+            <div class="card-index-info-top">
+              <h2><%= item.name.capitalize %></h2>
+              <% if item.user.location %>
+                <p><%= item.user.location.capitalize %></p>
+              <% end %>
+            </div>
+            <div class="card-index-info-bottom">
+              <h2>Donated 3 days ago</h2>
+              <% if item.user.first_name %>
+                <span class="card-index-user"><p>by <%= item.user.first_name.capitalize %></p></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
+    <% end %>
   </div>
 </div>
