@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'cloudinary', '~> 1.12.0'
+
 gem 'faker'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

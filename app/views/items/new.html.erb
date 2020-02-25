@@ -5,6 +5,7 @@
         <%= f.input :name %>
         <%= f.input :description %>
         <%= f.input :category, collection: Item::CATEGORIES %>
+        <%= f.input :pictures, as: :file, input_html: { multiple: true } %>
         <%= f.submit %>
       <% end %>
     </div>

@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
+      <% @item.pictures.each do |picture| %>
+      <%= cl_image_tag picture.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
       <h1><%= @item.name %></h1>
       <h3><%= @item.user.location %></h3>
       <p><%= @item.description %></p>
