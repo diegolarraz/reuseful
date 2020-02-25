@@ -12,8 +12,22 @@
 
       <% @item.pictures.each do |picture| %>
         <%= cl_image_tag picture.key, height: 300, width: 400, crop: :fill %>
+      <% if @item.pictures %>
+        <%= render 'shared/carousel' %>
       <% end %>
-
+      <div class="show-name-location">
+        <h1><%= @item.name.capitalize %></h1>
+        <% if @item.user.location %>
+          <p><%= @item.user.location.capitalize %></p>
+        <% end %>
+      </div>
+      <p><%= @item.description.capitalize %></p>
+      <%= link_to "Edit item", edit_item_path(@item) %>
+      <%= link_to "Remove item", item_path(@item), method: :delete %>
+      </div>
+  <div class="col-4">
+    <div class="booking-form">
+      <h3>Book an exchange</h3>
       <%= simple_form_for [ @item, @exchange ] do |f| %>
         <%= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
         <%= f.input :location %>
@@ -21,4 +35,5 @@
       <% end %>
     </div>
   </div>
+    </div>
 </div>
