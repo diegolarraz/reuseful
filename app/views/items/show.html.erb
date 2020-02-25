@@ -1,12 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12 col-lg-8">
       <% if @user %>
         <%= link_to "Edit item", edit_item_path(@item) %>
         <%= link_to "Remove item", item_path(@item), method: :delete %>
-      <% end %>
-      <% @item.pictures.each do |picture| %>
-        <%= cl_image_tag picture.key, height: 300, width: 400, crop: :fill %>
       <% end %>
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
@@ -21,7 +18,7 @@
       <%= link_to "Edit item", edit_item_path(@item) %>
       <%= link_to "Remove item", item_path(@item), method: :delete %>
       </div>
-  <div class="col-4">
+  <div class="col-12 col-lg-4">
     <div class="booking-form">
       <h3>Book an exchange</h3>
       <%= simple_form_for [ @item, @exchange ] do |f| %>
