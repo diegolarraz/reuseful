@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_many :exchanges, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many_attached :pictures
+  # , :maximum => 3
 
   CATEGORIES = %w(Clothing Furniture Appliances Electronics DIY Garden Travel Other)
   validates :name, :description, :category, presence: true
