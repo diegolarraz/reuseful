@@ -4,15 +4,6 @@ $h3-font: sans-serif;
 $main-color: black;
 $icon-color: #95e1d3;
 
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
@@ -35,28 +26,29 @@ $icon-color: #95e1d3;
       font-weight: 700;
       font-size: 1.875em;
     }
-    .main-menu {
-      float: right;
-      text-align: center;
-      li {
-        display: inline-block;
-        padding: 0.75em 1.875em;
-        a {
-          padding-bottom: 0.75em;
-          text-transform: uppercase;
-          color: $main-color;
-          font-size: 0.875em;
-          &:hover {
-            color: #575D90;
-            border-bottom: 0.1875em solid #575D90;
-            transition: .1s;
-            text-decoration: none;
-          }
-          span {font-size: 1.2em;}
-        }
-        &:last-child {padding: 0.75em 0;}
-        &:nth-child(6) a:hover, &:last-child a:hover {border: none;}
+  }
+}
+
+.main-menu {
+  float: right;
+  text-align: center;
+  li {
+    display: inline-block;
+    padding: 0.75em 1.875em;
+    a {
+      padding-bottom: 0.75em;
+      text-transform: uppercase;
+      color: $main-color;
+      font-size: 0.875em;
+      &:hover {
+        color: #575D90;
+        border-bottom: 0.1875em solid #575D90;
+        transition: .1s;
+        text-decoration: none;
       }
+      span {font-size: 1.2em;}
     }
+    &:last-child {padding: 0.75em 0;}
+    &:nth-child(6) a:hover, &:last-child a:hover {border: none;}
   }
 }
