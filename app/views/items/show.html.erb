@@ -20,7 +20,7 @@
       </div>
       <div class="show-info-lower">
         <div class="show-time-user">
-          <p>Donated 3 days ago by <%= @item.user.first_name %></p>
+          <p>Donated <%= @item.time_since_posted %> by <%= @item.user.first_name.capitalize %></p>
         </div>
         <div class="item-location">
           <p><%= @item.user.location %></p>
