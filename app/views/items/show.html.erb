@@ -4,17 +4,31 @@
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
       <% end %>
-      <div class="show-name-location">
-        <h1><%= @item.name.capitalize %></h1>
-        <% if @item.user.location %>
-          <p><%= @item.user.location.capitalize %></p>
-        <% end %>
+      <div class="show-info-upper">
+        <h1>
+          <%= @item.name.capitalize %>
+          <% if @user %>
+            <%= link_to edit_item_path(@item) do%>
+              <i class="fas fa-edit">|</i>
+            <% end %>
+            <%= link_to item_path(@item), method: :delete do%>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </h1>
+        <h3><%= @item.category %></h3>
       </div>
-      <p><%= @item.description.capitalize %></p>
-      <% if @user %>
-        <%= link_to "Edit item", edit_item_path(@item) %>
-        <%= link_to "Remove item", item_path(@item), method: :delete %>
-      <% end %>
+      <div class="show-info-lower">
+        <div class="show-time-user">
+          <p>Donated 3 days ago by <%= @item.user.first_name %></p>
+        </div>
+        <div class="item-location">
+          <p><%= @item.user.location %></p>
+        </div>
+      </div>
+      <div class="show-description">
+        <p><%= @item.description.capitalize %></p>
+      </div>
       </div>
   <div class="col-12 col-lg-4">
     <div class="booking-form">
