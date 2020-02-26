@@ -33,7 +33,7 @@
       <div class="show-description">
         <p><%= @item.description.capitalize %></p>
         <% if @item.exchanges.first %>
-          <% if @item.exchanges.first.comfirmed %>
+          <% if @item.exchanges.first.confirmed %>
             <p class="badge p-2 alert-danger">Pending collection</p>
           <% end %>
         <% else %>
