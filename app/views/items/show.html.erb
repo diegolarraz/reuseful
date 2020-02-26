@@ -48,7 +48,7 @@
           <%= simple_form_for [ @item, @exchange ] do |f| %>
             <%= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
             <%= f.input :location %>
-            <%= f.submit "Create collection", class: "btn btn-primary" %>
+            <%= f.submit "Create collection", class: "btn btn-primary submit-button" %>
           <% end %>
         <% else %>
           <p><em><%= link_to "Log in", new_user_session_path %> to book a collection!</em></p>
