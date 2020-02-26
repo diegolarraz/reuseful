@@ -2,10 +2,19 @@
   margin-top: 80px;
 }
 
+.header {
+  padding: 16px 0;
+}
+
 a {
   text-decoration: none;
   &:hover {
     text-decoration: none;
+  }
+}
+.card-index-info {
+  h2 {
+    font-size: 24px;
   }
 }
 
