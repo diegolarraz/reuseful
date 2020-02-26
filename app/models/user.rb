@@ -13,7 +13,7 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_location?
 
   def distance_from_item(item)
-    distance_in_miles = self.distance_to(item.user).round(2)
+    distance_in_miles = self.distance_to(item.user).round(1)
     "#{distance_in_miles} miles away"
   end
 end

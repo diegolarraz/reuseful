@@ -18,7 +18,7 @@
             <div class="card-index-info-bottom">
               <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
               <p>
-                <% if @user.latitude && item.user.latitude %>
+                <% if @user && @user.latitude && item.user.latitude %>
                   <%= @user.distance_from_item(item) %>
                 <% else %>
                   <%= item.user.location %>
