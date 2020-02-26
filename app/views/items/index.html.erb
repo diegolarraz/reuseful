@@ -5,7 +5,11 @@
     <div class="card-holder">
       <%= link_to item_path(item) do %>
         <div class="card-index">
-          <%= cl_image_tag item.pictures[1].key %>
+          <% if item.pictures[1] %>
+            <%= cl_image_tag item.pictures[1].key %>
+          <% else %>
+              <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
+          <% end %>
           <div class="card-index-info">
             <div class="card-index-info-top">
               <h2><%= item.name.capitalize %></h2>
@@ -13,7 +17,13 @@
             </div>
             <div class="card-index-info-bottom">
               <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
-              <p><%= item.user.location %></p>
+              <p>
+                <% if @user.latitude && item.user.latitude %>
+                  <%= @user.distance_from_item(item) %>
+                <% else %>
+                  <%= item.user.location %>
+                <% end %>
+              </p>
             </div>
           </div>
         </div>

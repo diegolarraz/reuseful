@@ -9,4 +9,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # validates :first_name, :last_name, :location, presence: true
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
+
+  def distance_from_item(item)
+    distance_in_miles = self.distance_to(item.user).round(2)
+    "#{distance_in_miles} miles away"
+  end
 end
