@@ -12,7 +12,7 @@
         <% end %>
         <!-- <li><a href="#section-7">Profile</a></li> -->
         <li><a href="/">About us</a></li>
-        <% if current_user %>
+        <% if user_signed_in? %>
           <li>
             <% if current_user.photo.attached? %>
               <%= cl_image_tag @user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
