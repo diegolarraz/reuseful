@@ -34,17 +34,48 @@
 }
 
 
-a {
+a:hover {
   text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-.button-to-change:hover, a:hover{
-  opacity: 0.7;
-  background-color:#42e6a4;
+  font-weight: bold;
+  color: white;
 
 }
 
+
+.profile-header {
+  background-color: #263062;
+  border-radius: 8px 8px 0px 0px;
+  color:white;
+}
+
+.profile {
+  border: 2px solid #263062;
+  border-radius: 10px;
+
+}
+
+.listings {
+  box-shadow : 3px 3px 4px 4px;
+  margin-bottom: 40px;
+  padding: 8px 15px;
+  h6, p {
+    margin: 0px;
+  }
+}
+
+
+.edit-profile {
+  padding: 10px;
+  margin: 18px 0;
+  background-color: #263062;
+  color: white;
+  border-radius: 10px;
+
+}
+.profile-footer{
+  h6{
+    margin-bottom:24px;
+  }
+}
 
 
