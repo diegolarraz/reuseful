@@ -9,15 +9,11 @@
           <div class="card-index-info">
             <div class="card-index-info-top">
               <h2><%= item.name.capitalize %></h2>
-              <% if item.user.location %>
-                <p><%= item.user.location.capitalize %></p>
-              <% end %>
+              <h2><%= item.category %></h2>
             </div>
             <div class="card-index-info-bottom">
-              <h2>Donated 3 days ago</h2>
-              <% if item.user.first_name %>
-                <span class="card-index-user"><p>by <%= item.user.first_name.capitalize %></p></span>
-              <% end %>
+              <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
+              <p><%= item.user.location %></p>
             </div>
           </div>
         </div>
