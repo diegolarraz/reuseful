@@ -9,4 +9,15 @@ class Item < ApplicationRecord
   validates :name, :description, :category, presence: true
   validates :category, inclusion: {in: CATEGORIES}
   validates :description, length: {minimum: 10}
+
+  def time_since_posted
+    time_diff = Time.now - created_at
+    if (time_diff / 1.minute).round < 60
+      return "#{(time_diff / 1.minute).round} minutes ago"
+    elsif (time_diff / 1.hour).round < 24
+      return "#{(time_diff / 1.hour).round} hours ago"
+    else
+      return "#{(time_diff / 1.day).round} days ago"
+    end
+  end
 end
