@@ -4,7 +4,9 @@
     <div class="col-4">
       <div class="profile sticky-top text-center">
         <div class="profile-header p-3">
-          <img class="avatar-large" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+          <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+          <% end %>
           <h4><%= @user.first_name + " " + @user.last_name %></h4>
         </div>
 
@@ -37,21 +39,6 @@
           </div>
         <% end %>
       </div>
-
-
-      <div class="listings">
-        <h5>My upcoming donations</h5>
-
-          <div class="donations d-flex align-items-center justify-content-between">
-            <h6>Remove the ruby tag</h6>
-            <p>whatever</p>
-          </div>
-
-      </div>
-
-
-
-
 
       </div>
 
