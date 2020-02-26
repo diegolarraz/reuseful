@@ -8,10 +8,10 @@
         <h1>
           <%= @item.name.capitalize %>
           <% if @user %>
-            <%= link_to edit_item_path(@item) do%>
+            <%= link_to edit_item_path(@item) do %>
               <i class="fas fa-edit">|</i>
             <% end %>
-            <%= link_to item_path(@item), method: :delete do%>
+            <%= link_to item_path(@item), method: :delete do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
@@ -28,17 +28,24 @@
       </div>
       <div class="show-description">
         <p><%= @item.description.capitalize %></p>
+        <% if @item.exchanges.first %>
+          <% if @item.exchanges.first.comfirmed %>
+            <p class="badge p-2 alert-danger">Pending collection</p>
+          <% end %>
+        <% else %>
+          <p class="badge p-2 alert-success">Item available!</p>
+        <% end %>
       </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="booking-form">
+        <h3>Book a collection</h3>
+        <%= simple_form_for [ @item, @exchange ] do |f| %>
+          <%= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
+          <%= f.input :location %>
+          <%= f.submit "Create collection", class: "btn btn-primary" %>
+        <% end %>
       </div>
-  <div class="col-12 col-lg-4">
-    <div class="booking-form">
-      <h3>Book an exchange</h3>
-      <%= simple_form_for [ @item, @exchange ] do |f| %>
-        <%= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
-        <%= f.input :location %>
-        <%= f.submit "Create Exchange", class: "btn btn-primary" %>
-      <% end %>
     </div>
   </div>
-    </div>
 </div>
