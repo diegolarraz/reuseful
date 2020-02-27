@@ -39,16 +39,17 @@ $icon-color: #95e1d3;
     padding: 0.75em 1.875em;
     a {
       padding-bottom: 0.75em;
+      margin-right: 10px;
       text-transform: uppercase;
       color: $main-color;
       font-size: 0.875em;
+      transition: .3s;
       &:hover {
         color: #575D90;
         border-bottom: 0.1875em solid #575D90;
-        transition: .1s;
         text-decoration: none;
       }
-      span {font-size: 1.2em;}
+      span {font-weight: bold;}
     }
     &:last-child {padding: 0.75em 0;}
     &:nth-child(6) a:hover, &:last-child a:hover {border: none;}

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i(show edit update destroy)
+  before_action :find_user
   skip_before_action :authenticate_user!, only: %i(index show)
 
 
@@ -8,14 +9,14 @@ class ItemsController < ApplicationController
       sql_query = "category ILIKE :query OR name ILIKE :query"
       @items = Item.where(sql_query, query: "%#{params[:query]}%")
     else
-      @items = Item.all
+      @items = Item.where.not(user: @user)
       @user = current_user
     end
   end
 
   def show
     @exchange = Exchange.new
-    @user = current_user
+
   end
 
   def new
@@ -56,6 +57,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def find_user
+    @user = current_user
   end
 
   def item_params
