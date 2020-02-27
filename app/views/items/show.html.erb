@@ -60,7 +60,6 @@
           <h3>Book a collection</h3>
           <%= simple_form_for [ @item, @exchange ] do |f| %>
             <%= f.input :date, as: :datetime, html5: true %>
-            <%#= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
             <%= f.input :location %>
             <%= f.submit "Create collection", class: "btn btn-primary submit-button" %>
           <% end %>
