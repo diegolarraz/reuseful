@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row py-3">
     <div class="col-12 col-lg-8">
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
@@ -7,7 +7,7 @@
       <div class="show-info-upper">
         <h1>
           <%= @item.name.capitalize %>
-          <% if @user %>
+          <% if @user == @item.user %>
             <%= link_to edit_item_path(@item) do %>
               <i class="fas fa-edit">|</i>
             <% end %>
@@ -24,9 +24,9 @@
         </div>
         <div class="item-location">
           <% if @user && @user.latitude && @item.user.latitude %>
-            <%= @user.distance_from_item(@item) %>
+            <i class="fas fa-map-marker-alt"></i> <%= @user.distance_from_item(@item) %>
           <% else %>
-            <%= @item.user.location %>
+            <i class="fas fa-map-marker-alt"></i> <%= @item.user.location %>
           <% end %>
         </div>
       </div>
@@ -34,6 +34,8 @@
         <p><%= @item.description.capitalize %></p>
         <% if @item.exchanges.first %>
           <% if @item.exchanges.first.confirmed %>
+            <p class="badge p-2 alert-dark">Item reserved</p>
+          <% else %>
             <p class="badge p-2 alert-danger">Pending collection</p>
           <% end %>
         <% else %>
@@ -43,7 +45,11 @@
     </div>
     <div class="col-12 col-lg-4">
       <div class="booking-form">
-        <% if @user %>
+        <% if @user == @item.user %>
+          <p><em>Thanks for donating an item with Reuseful!</em></p>
+        <% elsif @user && @item.exchanges.first %>
+          <p><em>Another user has already requested this item!</em></p>
+        <% elsif @user %>
           <h3>Book a collection</h3>
           <%= simple_form_for [ @item, @exchange ] do |f| %>
             <%= f.input :date, as: :string, required: true, input_html: {class: "datepicker"} %>
