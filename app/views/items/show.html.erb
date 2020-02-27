@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row py-3">
     <div class="col-12 col-lg-8 order-1">
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
@@ -54,6 +54,8 @@
       <div class="booking-form">
         <% if @user == @item.user %>
           <p><em>Thanks for donating an item with Reuseful!</em></p>
+        <% elsif @user && @item.exchanges.first && @item.exchanges.first.user == @user %>
+          <p><em>You have already requested this item! Your request has been sent to <%= @item.user.first_name.capitalize %></em></p>
         <% elsif @user && @item.exchanges.first %>
           <p><em>Another user has already requested this item!</em></p>
         <% elsif @user %>

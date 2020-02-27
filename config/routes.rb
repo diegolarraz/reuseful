@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
   get '/profile', to: 'pages#profile'
+  get '/profile/:exchange', to: 'pages#confirm?', as: 'confirm'
   devise_for :users
   resources :items do
     resources :comments, only: %w(new create)

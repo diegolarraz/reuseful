@@ -23,19 +23,50 @@
         <% @user.exchanges.each do |exchange| %>
           <div class="exchange d-flex align-items-center justify-content-between">
             <h6><%= link_to exchange.item.name.capitalize, item_path(exchange.item) %></h6>
-            <p><%= exchange.date %></p>
+            <p><%= exchange.date.to_formatted_s(:short)  %></p>
           </div>
         <% end %>
       </div>
 
       <div class="listings">
-        <h5>My upcoming donations</h5>
+        <h5>My  donations</h5>
         <% @user.items.each do |item| %>
           <div class="donations d-flex align-items-center justify-content-between">
             <h6><%= link_to item.name, item_path(item) %></h6>
           </div>
         <% end %>
       </div>
+
+      <% unless @exchanges.blank? %>
+        <div class="listings">
+          <h5>My collection requests</h5>
+          <% @exchanges.each do |exchange| %>
+            <div class="exchange">
+              <div class="donations d-flex align-items-center justify-content-between">
+                <h6><%= exchange.user.first_name.capitalize %> sent you a request for your <em><%= exchange.item.name %></em>.</h6>
+                <p><%= exchange.location.capitalize %> - <%= exchange.date.to_formatted_s(:short) %></p>
+              </div>
+              <div class="to-confirm">
+                <%= link_to "Confirm", confirm_path(exchange: exchange), class: "btn btn-outline-success" %>
+                <%= link_to "Decline", exchange_path(exchange), method: :delete, class: "btn btn-outline-warning" %>
+
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% unless @donations.blank? %>
+        <div class="listings">
+          <h5>My donated items</h5>
+          <% @donations.each do |item| %>
+            <div class="donations d-flex align-items-center justify-content-between">
+              <h6><%= link_to item.name, item_path(item) %></h6>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
     </div>
   </div>
   <div class="row align-items-center">
