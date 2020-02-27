@@ -14,6 +14,10 @@
       <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
     <% end %>
     </div>
+    <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+      <%= select_tag "sort", options_for_select(%w(Newest Nearest)) %>
+      <%= submit_tag "Sort", class: "btn btn-primary" %>
+    <% end %>
     <div class="cards">
       <% @items.each do |item| %>
       <div class="card-holder">
