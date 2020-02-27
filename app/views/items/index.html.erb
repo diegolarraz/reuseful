@@ -5,10 +5,8 @@
 
     <% if @items.empty? %>
       <h1>Nothing matched your search</h1>
-    <% elsif %>
+    <% else %>
       <h1><%= params[:query] %> available for collection</h1>
-     <% else %>
-      <h1>All items available for collection</h1>
     <% end %>
 
 
