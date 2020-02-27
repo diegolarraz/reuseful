@@ -6,6 +6,10 @@
     <div class="header py-3">
       <h1>All items available for collection</h1>
     </div>
+    <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+      <%= select_tag "category", options_for_select(Item::CATEGORIES, "All") %>
+      <%= submit_tag "Filter", class: "btn btn-primary" %>
+    <% end %>
     <div class="cards">
       <% @items.each do |item| %>
       <div class="card-holder">

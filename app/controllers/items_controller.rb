@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
       @items = Item.where(sql_query, query: "%#{params[:query]}%")
     else
       @items = Item.where.not(user: @user)
-      @user = current_user
     end
   end
 
