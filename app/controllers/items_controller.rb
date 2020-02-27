@@ -1,16 +1,16 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i(show edit update destroy)
+  before_action :find_user
   skip_before_action :authenticate_user!, only: %i(index show)
 
 
   def index
-    @items = Item.all
-    @user = current_user
+    @items = Item.where.not(user: @user)
   end
 
   def show
     @exchange = Exchange.new
-    @user = current_user
+
   end
 
   def new
@@ -51,6 +51,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def find_user
+    @user = current_user
   end
 
   def item_params
