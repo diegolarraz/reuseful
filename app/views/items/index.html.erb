@@ -7,8 +7,8 @@
       <h1>All items available for collection</h1>
     </div>
     <%= form_tag items_path, method: :get ,class: "form-inline" do %>
-      <%= select_tag "category", options_for_select(Item::CATEGORIES, "All") %>
-      <%= submit_tag "Filter", class: "btn btn-primary" %>
+      <%= select_tag "sort", options_for_select(%w(Newest Nearest), "All") %>
+      <%= submit_tag "Sort", class: "btn btn-primary" %>
     <% end %>
     <div class="cards">
       <% @items.each do |item| %>
