@@ -13,7 +13,7 @@ class ExchangesController < ApplicationController
     if @exchange.save
       redirect_to item_path(@item)
     else
-      render "/items/show"
+      render "/profile"
     end
   end
 
