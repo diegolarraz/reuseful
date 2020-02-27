@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.all
+    @items = Item.where.not(user: @user)
   end
 
   def show

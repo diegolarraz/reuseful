@@ -1,6 +1,5 @@
-
 <div class="container">
-  <div class="row">
+  <div class="row py-3">
     <div class="col-4">
       <div class="profile sticky-top text-center">
         <div class="profile-header p-3">
@@ -10,13 +9,10 @@
           <h4><%= @user.first_name + " " + @user.last_name %></h4>
         </div>
 
-
-
         <div class="profile-footer p-3">
           <h6><%= @user.location %></h6>
            <%= link_to "Edit your profile", edit_user_registration_path, class: "edit-profile" %>
         </div>
-
       </div>
     </div>
 
@@ -25,7 +21,7 @@
         <h5>My upcoming collections</h5>
         <% @user.exchanges.each do |exchange| %>
           <div class="exchange d-flex align-items-center justify-content-between">
-            <h6><%= exchange.item.name %></h6>
+            <h6><%= link_to exchange.item.name.capitalize, item_path(exchange.item) %></h6>
             <p><%= exchange.date %></p>
           </div>
         <% end %>
@@ -35,15 +31,10 @@
         <h5>My upcoming donations</h5>
         <% @user.items.each do |item| %>
           <div class="donations d-flex align-items-center justify-content-between">
-            <h6><%= item.name %></h6>
+            <h6><%= link_to item.name, item_path(item) %></h6>
           </div>
         <% end %>
       </div>
-
-      </div>
-
-
     </div>
-
   </div>
 </div>

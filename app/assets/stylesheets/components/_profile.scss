@@ -1,46 +1,9 @@
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
-  text-align: center;
-  margin-top: 100px;
-  box-sizing: border-box;
-}
-
-
-.title-exchange{
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 3px;
-  color: white;
-  background-color: #42e6a4;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-.title{
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 3px;
-  color: white;
-  background-color: #42e6a4;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-
 a:hover {
   text-decoration: none;
   font-weight: bold;
   color: white;
 
 }
-
 
 .profile-header {
   background-color: #263062;
@@ -51,18 +14,18 @@ a:hover {
 .profile {
   border: 2px solid #263062;
   border-radius: 10px;
-
+  box-shadow : 5px 5px 15px 5px rgba(0,0,0,0.21);
 }
 
 .listings {
-  box-shadow : 3px 3px 4px 4px;
+  box-shadow : 5px 5px 15px 5px rgba(0,0,0,0.21);
   margin-bottom: 40px;
+  border-radius: 10px;
   padding: 8px 15px;
   h6, p {
     margin: 0px;
   }
 }
-
 
 .edit-profile {
   padding: 10px;
@@ -70,12 +33,10 @@ a:hover {
   background-color: #263062;
   color: white;
   border-radius: 10px;
-
 }
-.profile-footer{
-  h6{
+
+.profile-footer {
+  h6 {
     margin-bottom:24px;
   }
 }
-
-
