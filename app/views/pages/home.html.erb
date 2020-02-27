@@ -4,13 +4,27 @@
     <h1><strong>Reuseful</strong></h1>
     <br>
     <p><strong>MAKE SECOND HAND YOUR FIRST CHOICE!</strong></p>
-    <div class="field_container">
-    <input type=”text” name="postcode" id="postcode" placeholder="Enter Postcode" />
-    <button class="btn btn-primary" type="button">
+
+
+   <!--  <div class="field_container">
+      <input type=”text” name="postcode" id="postcode" placeholder="Search items" />
+      <button class="btn btn-primary" type="button">
       Begin
-    </button>
-    </div>
+      </button>
+    </div> -->
+
+    <%= form_tag items_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Search items"
+      %>
+      <%= submit_tag "Begin", class: "postcode" %>
+    <% end %>
+
   </div>
+
+
 </div>
 
 <div class="container-cards">
