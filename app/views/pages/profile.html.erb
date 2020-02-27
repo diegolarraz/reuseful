@@ -7,7 +7,7 @@
           <% if @user.photo.attached? %>
             <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
           <% end %>
-          <h4><%= @user.first_name + " " + @user.last_name %></h4>
+          <h4 class="pt-4"><%= @user.first_name + " " + @user.last_name %></h4>
         </div>
 
         <div class="profile-footer p-3">
@@ -18,24 +18,29 @@
     </div>
 
     <div class="col-8">
-      <div class="listings">
-        <h5>My upcoming collections</h5>
-        <% @user.exchanges.each do |exchange| %>
-          <div class="exchange d-flex align-items-center justify-content-between">
-            <h6><%= link_to exchange.item.name.capitalize, item_path(exchange.item) %></h6>
-            <p><%= exchange.date.to_formatted_s(:short)  %></p>
+      <% @requests.each do |request| %>
+        <% if request.confirmed %>
+          <div class="listings">
+            <h5>Items to collect</h5>
+            <div class="exchange d-flex align-items-center justify-content-between">
+              <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
+              <p><%= request.location.capitalize %></p>
+              <p><%= request.date.to_formatted_s(:short)  %></p>
+            </div>
           </div>
         <% end %>
-      </div>
 
-      <div class="listings">
-        <h5>My  donations</h5>
-        <% @user.items.each do |item| %>
-          <div class="donations d-flex align-items-center justify-content-between">
-            <h6><%= link_to item.name, item_path(item) %></h6>
+        <% if !request.confirmed %>
+          <div class="listings">
+            <h5>Items requested</h5>
+            <div class="exchange d-flex align-items-center justify-content-between">
+              <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
+              <p><%= request.location.capitalize %></p>
+              <p><%= request.date.to_formatted_s(:short)  %></p>
+            </div>
           </div>
         <% end %>
-      </div>
+      <% end %>
 
       <% unless @exchanges.blank? %>
         <div class="listings">
@@ -49,10 +54,18 @@
               <div class="to-confirm">
                 <%= link_to "Confirm", confirm_path(exchange: exchange), class: "btn btn-outline-success" %>
                 <%= link_to "Decline", exchange_path(exchange), method: :delete, class: "btn btn-outline-warning" %>
-
               </div>
             </div>
           <% end %>
+        </div>
+      <% end %>
+
+      <% @availables.each do |item| %>
+        <div class="listings">
+          <h5>Items to be donated</h5>
+          <div class="donations d-flex align-items-center justify-content-between">
+            <h6><%= link_to item.name, item_path(item) %></h6>
+          </div>
         </div>
       <% end %>
 
@@ -66,7 +79,6 @@
           <% end %>
         </div>
       <% end %>
-
     </div>
   </div>
   <div class="row align-items-center">

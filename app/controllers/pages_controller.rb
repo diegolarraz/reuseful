@@ -6,10 +6,14 @@ class PagesController < ApplicationController
   def profile
     @user = current_user
     @items = @user.items
+    @requests = @user.exchanges
     @exchanges = []
     @donations = []
+    @availables = []
     @items.each do |item|
-      unless item.exchanges.last.nil?
+      if item.exchanges.last.nil?
+        @availables << item
+      else
         if item.exchanges.last.confirmed
           @donations << item
         else

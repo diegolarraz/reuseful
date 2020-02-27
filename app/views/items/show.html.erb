@@ -32,8 +32,8 @@
       </div>
       <div class="show-description">
         <p><%= @item.description.capitalize %></p>
-        <% if @item.exchanges.first %>
-          <% if @item.exchanges.first.confirmed %>
+        <% if @item.exchanges.last %>
+          <% if @item.exchanges.last.confirmed %>
             <p class="badge p-2 alert-dark">Item reserved</p>
           <% else %>
             <p class="badge p-2 alert-danger">Pending collection</p>
@@ -54,9 +54,9 @@
       <div class="booking-form">
         <% if @user == @item.user %>
           <p><em>Thanks for donating an item with Reuseful!</em></p>
-        <% elsif @user && @item.exchanges.first && @item.exchanges.first.user == @user %>
+        <% elsif @user && @item.exchanges.last && @item.exchanges.last.user == @user %>
           <p><em>You have already requested this item! Your request has been sent to <%= @item.user.first_name.capitalize %></em></p>
-        <% elsif @user && @item.exchanges.first %>
+        <% elsif @user && @item.exchanges.last %>
           <p><em>Another user has already requested this item!</em></p>
         <% elsif @user %>
           <h3>Book a collection</h3>
