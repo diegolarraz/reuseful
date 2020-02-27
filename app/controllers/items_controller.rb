@@ -10,10 +10,11 @@ class ItemsController < ApplicationController
       @items = Item.where(sql_query, query: "%#{params[:query]}%")
     else
       @items = Item.where.not(user: @user)
-      if params[:sort] = "Newest"
-        @items.sort { |item| Time.now - item.created_at  }
-      elsif params[:sort] = "Nearest"
-        @items.sort_by { |item|  @user.distance_from_item(item)  }
+      if params[:sort] == "Newest"
+        @items = @items.order(:created_at).reverse
+      elsif params[:sort] == "Nearest"
+       # @items = @items.sort_by { |item| @user.item_distance(item) }
+               @items = @items.order(:created_at).reverse
       end
     end
   end
