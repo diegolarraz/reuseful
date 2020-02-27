@@ -13,13 +13,13 @@
       </button>
     </div> -->
 
-    <%= form_tag items_path, method: :get do %>
+    <%= form_tag items_path, method: :get ,class: "form-inline" do %>
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
         placeholder: "Search items"
       %>
-      <%= submit_tag "Begin", class: "postcode" %>
+      <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
     <% end %>
 
   </div>
