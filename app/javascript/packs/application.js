@@ -22,4 +22,6 @@ require("channels")
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
 import "../plugins/flatpickr"
+import "flatpickr/dist/flatpickr.min.css"  // A path to the theme CSS
+
 import "bootstrap";
