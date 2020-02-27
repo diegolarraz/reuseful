@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center py-3">
     <div class="col-8">
-      <%= simple_form_for @item do |f| %>
+      <%= simple_form_for(@item) do |f| %>
         <%= f.input :name %>
         <%= f.input :description %>
         <%= f.input :category, collection: Item::CATEGORIES %>

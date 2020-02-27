@@ -3,6 +3,8 @@ class Item < ApplicationRecord
   has_many :exchanges, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many_attached :pictures
+
+
   # , :maximum => 3
 
   CATEGORIES = %w(Clothing Furniture Appliances Electronics DIY Garden Travel Other)
@@ -26,4 +28,11 @@ class Item < ApplicationRecord
       return "#{(time_diff / 1.day).round} days ago"
     end
   end
+
+  include PgSearch::Model
+   pg_search_scope :search_by_category_and_name,
+    against: [ :category, :name ],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

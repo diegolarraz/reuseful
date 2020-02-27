@@ -1,36 +1,44 @@
 <div class="container">
-  <div class="header">
-    <h1>All items available for collection</h1>
-  </div>
-  <div class="cards">
-    <% @items.each do |item| %>
-    <div class="card-holder">
-      <%= link_to item_path(item) do %>
-        <div class="card-index">
-          <% if item.pictures[1] %>
-            <%= cl_image_tag item.pictures[1].key %>
-          <% else %>
-              <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
-          <% end %>
-          <div class="card-index-info">
-            <div class="card-index-info-top">
-              <h2><%= item.name.capitalize %></h2>
-              <h2><%= item.category %></h2>
-            </div>
-            <div class="card-index-info-bottom">
-              <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
-              <p>
-                <% if @user && @user.latitude && item.user.latitude %>
-                  <%= @user.distance_from_item(item) %>
-                <% else %>
-                  <%= item.user.location %>
-                <% end %>
-              </p>
+
+  <% if @items.empty? %>
+    <h1>Nothing matched your search</h1>
+  <% else %>
+    <div class="header py-3">
+      <h1>All items available for collection</h1>
+    </div>
+    <div class="cards">
+      <% @items.each do |item| %>
+      <div class="card-holder">
+        <%= link_to item_path(item) do %>
+          <div class="card-index">
+            <% if item.pictures[1] %>
+              <%= cl_image_tag item.pictures[1].key %>
+            <% else %>
+                <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
+            <% end %>
+            <div class="card-index-info">
+              <div class="card-index-info-top">
+                <h2><%= item.name.capitalize %></h2>
+                <h2><%= item.category %></h2>
+              </div>
+              <div class="card-index-info-bottom">
+                <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
+                <p>
+                  <% if @user && @user.latitude && item.user.latitude %>
+                    <%= @user.distance_from_item(item) %>
+                  <% else %>
+                    <%= item.user.location %>
+                  <% end %>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      </div>
       <% end %>
     </div>
-    <% end %>
-  </div>
+  <% end %>
+
+
+
 </div>
