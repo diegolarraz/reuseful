@@ -11,6 +11,5 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 
-
 });
 
