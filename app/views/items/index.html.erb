@@ -1,10 +1,15 @@
 <div class="container">
 
-  <% if @items.empty? %>
-    <h1>Nothing matched your search</h1>
-  <% else %>
-    <div class="header py-3">
+
+  <div class="header py-3">
+
+    <% if @items.empty? %>
+      <h1>Nothing matched your search</h1>
+    <% else %>
       <h1><%= params[:query] %> available for collection</h1>
+    <% end %>
+
+
        <%= form_tag items_path, method: :get ,class: "form-inline" do %>
       <%= text_field_tag :query,
         params[:query],
@@ -12,7 +17,6 @@
         placeholder: "Search items"
       %>
       <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
-    <% end %>
     </div>
     <div class="cards">
       <% @items.each do |item| %>
