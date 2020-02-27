@@ -7,7 +7,8 @@ class Item < ApplicationRecord
 
   # , :maximum => 3
 
-  CATEGORIES = %w(All Clothing Furniture Appliances Electronics DIY Garden Travel Other)
+  # Item::CATEGORIES => Call this ANYWHERE in the app
+  CATEGORIES = %w(Clothing Furniture Appliances Electronics DIY Garden Travel Other)
   validates :name, :description, :category, presence: true
   validates :category, inclusion: {in: CATEGORIES}
   validates :description, length: {minimum: 10}
