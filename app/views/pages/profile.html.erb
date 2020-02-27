@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row py-3">
     <div class="col-4">
+      <% if user_signed_in? %>
       <div class="profile sticky-top text-center">
         <div class="profile-header p-3">
           <% if @user.photo.attached? %>
@@ -35,6 +36,13 @@
           </div>
         <% end %>
       </div>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-4">
+      <% else %>
+        <p><em><%= link_to "Log in", new_user_session_path %> to book a collection!</em></p>
+      <% end %>
     </div>
   </div>
 </div>
