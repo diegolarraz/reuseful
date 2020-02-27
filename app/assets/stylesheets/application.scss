@@ -7,8 +7,12 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-// @import "flatpickr/dist/flatpickr.min";
+
+@import 'mapbox-gl/dist/mapbox-gl';
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+// Map styling
