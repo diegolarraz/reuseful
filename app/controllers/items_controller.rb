@@ -15,13 +15,13 @@ class ItemsController < ApplicationController
 
   def show
     @exchange = Exchange.new
-
-    @user = current_user
-    user_marker = {
-      lat: @user.latitude,
-      lng: @user.longitude,
-      image_url: helpers.asset_url('user_location')
-    }
+    if @user
+      user_marker = {
+        lat: @user.latitude,
+        lng: @user.longitude,
+        image_url: helpers.asset_url('user_location')
+      }
+    end
     item_marker = {
       lat: @item.user.latitude,
       lng: @item.user.longitude,
