@@ -11,9 +11,10 @@ class ExchangesController < ApplicationController
     @exchange.item = @item
     @exchange.user = current_user
     if @exchange.save
-      redirect_to item_path(@item)
+      redirect_to profile_path
     else
-      render "/profile"
+      @user = current_user
+      render 'items/show'
     end
   end
 
