@@ -1,9 +1,22 @@
-<div class="container">
+<div class="container padding-top-show">
   <div class="row">
-    <div class="col-12 col-lg-8 order-1">
+    <div class="col-12 order-1">
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
       <% end %>
+      <div class="item-status">
+        <% if @item.exchanges.first %>
+          <% if @item.exchanges.first.confirmed %>
+            <p class="badge p-2 alert-dark">Item reserved</p>
+          <% else %>
+            <p class="badge p-2 alert-danger">Pending collection</p>
+          <% end %>
+        <% else %>
+          <p class="badge p-2 alert-success">Item available!</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-12 col-lg-8 order-2">
       <div class="show-info-upper">
         <h1>
           <%= @item.name.capitalize %>
@@ -32,15 +45,6 @@
       </div>
       <div class="show-description">
         <p><%= @item.description.capitalize %></p>
-        <% if @item.exchanges.first %>
-          <% if @item.exchanges.first.confirmed %>
-            <p class="badge p-2 alert-dark">Item reserved</p>
-          <% else %>
-            <p class="badge p-2 alert-danger">Pending collection</p>
-          <% end %>
-        <% else %>
-          <p class="badge p-2 alert-success">Item available!</p>
-        <% end %>
       </div>
     </div>
     <div class="map-container col-12 order-3">
