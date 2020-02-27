@@ -11,6 +11,17 @@ class ItemsController < ApplicationController
   def show
     @exchange = Exchange.new
     @user = current_user
+    user_marker = {
+      lat: @user.latitude,
+      lng: @user.longitude,
+      image_url: helpers.asset_url('user_location')
+    }
+    item_marker = {
+      lat: @item.user.latitude,
+      lng: @item.user.longitude,
+      image_url: helpers.asset_url('item_location')
+    }
+    @markers = [item_marker, user_marker]
   end
 
   def new

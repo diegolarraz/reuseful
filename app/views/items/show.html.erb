@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-8">
+    <div class="col-12 col-lg-8 order-1">
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
       <% end %>
@@ -41,7 +41,14 @@
         <% end %>
       </div>
     </div>
-    <div class="col-12 col-lg-4">
+    <div class="map-container col-12 order-3">
+      <div id="map"
+           style="width: 100%;
+           height: 600px;"
+           data-markers="<%= @markers.to_json %>"
+           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+    <div class="col-12 col-lg-4 order-2">
       <div class="booking-form">
         <% if @user %>
           <h3>Book a collection</h3>
