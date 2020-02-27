@@ -5,7 +5,13 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.where.not(user: @user)
+    if params[:query].present?
+      sql_query = "category ILIKE :query OR name ILIKE :query"
+      @items = Item.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @items = Item.where.not(user: @user)
+      @user = current_user
+    end
   end
 
   def show
