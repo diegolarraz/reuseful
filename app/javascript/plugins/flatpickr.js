@@ -1,6 +1,5 @@
 import flatpickr from "flatpickr"
-import "flatpickr/dist/themes/material_green.css" // A path to the theme CSS
-import Siema from 'siema';
+import "flatpickr/dist/flatpickr.min.css"  // A path to the theme CSS
 
 const datepicker = document.querySelector(".datepicker")
 
