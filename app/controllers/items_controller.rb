@@ -12,8 +12,7 @@ class ItemsController < ApplicationController
       if params[:sort] == "Newest"
         @items = @items.order(:created_at).reverse
       elsif params[:sort] == "Nearest"
-       # @items = @items.sort_by { |item| @user.item_distance(item) }
-               @items = @items.order(:created_at).reverse
+       @items = @items.sort_by { |item| @user.item_distance(item) }
       end
     end
   end
