@@ -6,11 +6,11 @@ class ExchangesController < ApplicationController
 
   def create
     @exchange = Exchange.new(exchange_params)
-    # we need `restaurant_id` to associate review with corresponding restaurant
     @item = Item.find(params[:item_id])
     @exchange.item = @item
     @exchange.user = current_user
     if @exchange.save
+      flash[:notice] = "Collection request sent!"
       redirect_to profile_path
     else
       @user = current_user
@@ -19,6 +19,10 @@ class ExchangesController < ApplicationController
   end
 
   def destroy
+    @exchange = Exchange.find(params[:id])
+    @exchange.destroy
+    flash[:notice] = "The collection has been removed!"
+    redirect_to profile_path
   end
 
   private

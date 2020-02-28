@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :find_user
   skip_before_action :authenticate_user!, only: %i(index show)
 
-
   def index
     if params[:query].present?
       sql_query = "category ILIKE :query OR name ILIKE :query"
