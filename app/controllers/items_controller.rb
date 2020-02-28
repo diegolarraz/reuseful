@@ -89,9 +89,11 @@ class ItemsController < ApplicationController
 
   def notification_alert
     @user = current_user
-    if @user.notifications > @@alert
-      flash[:notice] = "You received a request for an item!"
-      @@alert += 1
+    if @user
+      if @user.notifications > @@alert
+        flash[:notice] = "You received a request for an item!"
+        @@alert += 1
+      end
     end
   end
 end
