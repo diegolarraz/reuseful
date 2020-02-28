@@ -67,7 +67,10 @@
     </div>
   <% end %>
   <!-- <div class="container"> -->
-    <h5>My items</h5>
+    <div class="item-header">
+      <h5>My items</h5>
+
+    </div>
       <div class="cards">
       <% current_user.items.each do |item| %>
         <div class="card-holder">
