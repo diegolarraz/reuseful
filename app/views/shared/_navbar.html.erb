@@ -1,11 +1,10 @@
-
-  <div class="header-wrapper container">
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="main-logo">
-        <%= link_to "/items", class: "navbar-brand" do %>
-          <i class="fas fa-leaf"></i> Reuseful
-        <% end %>
-      </div>
+<div class="header-wrapper container pt-1 pb-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="main-logo">
+      <%= link_to "/items", class: "navbar-brand" do %>
+        <i class="fas fa-leaf"></i> Reuseful
+      <% end %>
+    </div>
       <nav>
         <ul class="main-menu">
           <li><%= link_to "Give an item", new_item_path %></li>
@@ -35,7 +34,6 @@
           <% end %>
         </ul>
       </nav>
-
     </div>
   </div>
 </header>

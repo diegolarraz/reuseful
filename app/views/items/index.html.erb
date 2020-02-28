@@ -1,9 +1,8 @@
-<div class="container padding-top">
-
+<div class="container">
   <% if @items.empty? %>
     <h1>Nothing matched your search</h1>
   <% else %>
-    <div class="header py-3">
+    <div class="header py-2">
       <h1><%= params[:query] %> available for collection</h1>
        <%= form_tag items_path, method: :get ,class: "form-inline" do %>
       <%= text_field_tag :query,
