@@ -4,7 +4,7 @@
       <h1>Nothing matched your search</h1>
     <% else %>
     <div class="header py-2">
-      <h1><%= @items.count %> available for collection</h1>
+      <h1><%= pluralize(@items.count, 'item') %> available for collection</h1>
     <% end %>
        <%= form_tag items_path, method: :get ,class: "form-inline" do %>
       <%= text_field_tag :query,
@@ -57,8 +57,8 @@
       <% end %>
     </div>
   <% end %>
-  <div class="listings">
-    <h5>My upcoming donations</h5>
+  <div class="container">
+    <h5>My items</h5>
       <div class="cards">
       <% current_user.items.each do |item| %>
         <div class="card-holder">
