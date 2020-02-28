@@ -28,7 +28,8 @@ class User < ApplicationRecord
       if item.exchanges.last.confirmed
         notifications += 1
       end
-      return notifications
+    end
+    return notifications
   end
 
 end
