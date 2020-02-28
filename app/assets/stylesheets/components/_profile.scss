@@ -1,3 +1,7 @@
+.top-padding {
+  margin-top: 112px;
+}
+
 .listings a:hover {
   text-decoration: none;
   font-weight: bold;
@@ -6,13 +10,13 @@
 
 
 .profile-header {
-  background-color: #263062;
+  background-color: #0353a4;
   border-radius: 8px 8px 0px 0px;
-  color:white;
+  color: white;
 }
 
 .profile {
-  border: 2px solid #263062;
+  border: 2px solid #0353a4;
   border-radius: 10px;
   box-shadow : 5px 5px 15px 5px rgba(0,0,0,0.21);
 }
@@ -30,7 +34,7 @@
 .edit-profile {
   padding: 10px;
   margin: 18px 0;
-  background-color: #263062;
+  background-color: #0353a4;
   color: white;
   border-radius: 10px;
 }
