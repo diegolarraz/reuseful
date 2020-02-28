@@ -66,7 +66,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class="container">
+  <!-- <div class="container"> -->
     <h5>My items</h5>
       <div class="cards">
       <% current_user.items.each do |item| %>
@@ -84,14 +84,8 @@
                   <h2><%= item.category %></h2>
                 </div>
                 <div class="card-index-info-bottom">
-                  <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
-                  <p>
-                    <% if @user && @user.latitude && item.user.latitude %>
-                      <%= @user.distance_from_item(item) %>
-                    <% else %>
-                      <%= item.user.location %>
-                    <% end %>
-                  </p>
+                  <p>Donated <%= item.time_since_posted %></p>
+
                 </div>
               </div>
             </div>
@@ -99,7 +93,7 @@
         </div>
       <% end %>
     </div>
-  </div>
+  <!-- </div> -->
 
 
 
