@@ -26,7 +26,7 @@ class User < ApplicationRecord
     notifications = 0
     self.items.each do |item|
       if item.exchanges.last
-        if item.exchanges.last.confirmed
+        if item.exchanges.last.confirmed == false
           notifications += 1
         end
       end
