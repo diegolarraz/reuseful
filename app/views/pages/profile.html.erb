@@ -34,18 +34,20 @@
         </div>
       <% end %>
 
-      <div class="listings">
-        <h5>Items requested</h5>
-        <% @requests.each do |request| %>
-          <% if !request.confirmed %>
-            <div class="exchange d-flex align-items-center justify-content-between">
-              <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
-              <p><%= request.location.capitalize %></p>
-              <p><%= request.date.to_formatted_s(:short)  %></p>
-            </div>
+      <% unless @requests.where(confirmed: false).blank? %>
+        <div class="listings">
+          <h5>Items requested</h5>
+          <% @requests.each do |request| %>
+            <% if !request.confirmed %>
+              <div class="exchange d-flex align-items-center justify-content-between">
+                <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
+                <p><%= request.location.capitalize %></p>
+                <p><%= request.date.to_formatted_s(:short)  %></p>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <% unless @exchanges.blank? %>
         <div class="listings">
