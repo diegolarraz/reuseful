@@ -4,13 +4,13 @@ class Item < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many_attached :pictures
 
-
   # , :maximum => 3
+
   # Item::CATEGORIES => Call this ANYWHERE in the app
   CATEGORIES = %w(Clothing Furniture Appliances Electronics DIY Garden Travel Other)
   validates :name, :description, :category, presence: true
-  validates :category, inclusion: {in: CATEGORIES}
-  validates :description, length: {minimum: 10}
+  validates :category, inclusion: { in: CATEGORIES }
+  validates :description, length: { minimum: 10 }
 
   def time_since_posted
     time_diff = Time.now - created_at

@@ -1,31 +1,39 @@
-<header class="main-header">
-  <div class="header-wrapper">
+<div class="header-wrapper container pt-1 pb-2">
+  <div class="d-flex justify-content-between align-items-center">
     <div class="main-logo">
       <%= link_to "/items", class: "navbar-brand" do %>
         <i class="fas fa-leaf"></i> Reuseful
       <% end %>
     </div>
-    <nav>
-      <ul class="main-menu">
-        <li><%= link_to "Give an item", new_item_path %></li>
-        <!-- <li><a href="#section-7">Profile</a></li> -->
-        <li><a href="/">About us</a></li>
-        <% if user_signed_in? %>
-          <li>
-            <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-              <%= image_tag "https://www.kindpng.com/picc/m/114-1140943_computer-icons-person-login-transparent-silhouette-icon-png.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", "/profile", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <%= link_to "Log in", new_user_session_path, class: "btn btn-rounded btn-primary" %>
-        <% end %>
-      </ul>
-    </nav>
+      <nav>
+        <ul class="main-menu">
+          <li><%= link_to "Give an item", new_item_path %></li>
+          <!-- <li><a href="#section-7">Profile</a></li> -->
+          <li><a href="/">About us</a></li>
+          <% if user_signed_in? %>
+            <li>
+              <% if @user.exchanges.where(confirmed: false).count != 0 %>
+                <%= link_to "/profile" do %>
+                  <div class="notification">
+                    <%= @user.exchanges.where(confirmed: false).count %>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+                <%= image_tag "https://www.kindpng.com/picc/m/114-1140943_computer-icons-person-login-transparent-silhouette-icon-png.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <%= link_to "Profile", "/profile", class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% else %>
+            <%= link_to "Log in", new_user_session_path, class: "btn btn-rounded btn-primary" %>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>

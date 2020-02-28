@@ -17,4 +17,9 @@ class User < ApplicationRecord
     distance_in_miles = self.distance_to(item.user).round(1)
     "#{distance_in_miles} miles away"
   end
+
+  def item_distance(item)
+    distance_in_miles = self.distance_to(item.user).round(1)
+  end
+
 end

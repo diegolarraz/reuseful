@@ -3,26 +3,29 @@ class ItemsController < ApplicationController
   before_action :find_user
   skip_before_action :authenticate_user!, only: %i(index show)
 
-
   def index
     if params[:query].present?
       sql_query = "category ILIKE :query OR name ILIKE :query"
       @items = Item.where(sql_query, query: "%#{params[:query]}%")
     else
       @items = Item.where.not(user: @user)
-      @user = current_user
+      if params[:sort] == "Newest"
+        @items = @items.order(:created_at).reverse
+      elsif params[:sort] == "Nearest"
+       @items = @items.sort_by { |item| @user.item_distance(item) }
+      end
     end
   end
 
   def show
     @exchange = Exchange.new
-
-    @user = current_user
-    user_marker = {
-      lat: @user.latitude,
-      lng: @user.longitude,
-      image_url: helpers.asset_url('user_location')
-    }
+    if @user
+      user_marker = {
+        lat: @user.latitude,
+        lng: @user.longitude,
+        image_url: helpers.asset_url('user_location')
+      }
+    end
     item_marker = {
       lat: @item.user.latitude,
       lng: @item.user.longitude,

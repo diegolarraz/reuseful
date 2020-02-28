@@ -1,16 +1,10 @@
 <div class="container">
-
-
   <div class="header py-3">
-
     <% if @items.empty? %>
       <h1>Nothing matched your search</h1>
     <% else %>
+    <div class="header py-2">
       <h1><%= pluralize @items.count, params[:query] %> available for collection</h1>
-    <% end %>
-
-
-
        <%= form_tag items_path, method: :get ,class: "form-inline" do %>
       <%= text_field_tag :query,
         params[:query],
@@ -19,6 +13,10 @@
       %>
       <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
     </div>
+    <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+      <%= select_tag "sort", options_for_select(%w(Newest Nearest)) %>
+      <%= submit_tag "Sort", class: "btn btn-primary" %>
+    <% end %>
     <div class="cards">
       <% @items.each do |item| %>
       <div class="card-holder">
@@ -29,6 +27,13 @@
             <% else %>
                 <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
             <% end %>
+
+            <div class="item-status">
+              <% if ((Time.now - item.created_at) / 1.minute).round < 60 %>
+                <p class="badge p-2 alert-warning">New!</p>
+              <% end %>
+            </div>
+
             <div class="card-index-info">
               <div class="card-index-info-top">
                 <h2><%= item.name.capitalize %></h2>
