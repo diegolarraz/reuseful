@@ -6,8 +6,9 @@
     <% if @items.empty? %>
       <h1>Nothing matched your search</h1>
     <% else %>
-      <h1><%= params[:query] %> available for collection</h1>
+      <h1><%= pluralize @items.count, params[:query] %> available for collection</h1>
     <% end %>
+
 
 
        <%= form_tag items_path, method: :get ,class: "form-inline" do %>
@@ -50,6 +51,41 @@
       <% end %>
     </div>
   <% end %>
+  <div class="listings">
+    <h5>My upcoming donations</h5>
+      <div class="cards">
+      <% current_user.items.each do |item| %>
+        <div class="card-holder">
+          <%= link_to item_path(item) do %>
+            <div class="card-index">
+              <% if item.pictures[1] %>
+                <%= cl_image_tag item.pictures[1].key %>
+              <% else %>
+                  <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
+              <% end %>
+              <div class="card-index-info">
+                <div class="card-index-info-top">
+                  <h2><%= item.name.capitalize %></h2>
+                  <h2><%= item.category %></h2>
+                </div>
+                <div class="card-index-info-bottom">
+                  <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
+                  <p>
+                    <% if @user && @user.latitude && item.user.latitude %>
+                      <%= @user.distance_from_item(item) %>
+                    <% else %>
+                      <%= item.user.location %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
 
 
 
