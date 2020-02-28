@@ -33,5 +33,4 @@ class User < ApplicationRecord
     end
     return notifications
   end
-
 end
