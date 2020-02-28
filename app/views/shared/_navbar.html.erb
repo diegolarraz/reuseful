@@ -13,6 +13,13 @@
           <li><a href="/">About us</a></li>
           <% if user_signed_in? %>
             <li>
+              <% if @user.exchanges.where(confirmed: false).count %>
+                <%= link_to "/profile" do %>
+                  <div class="notification">
+                    <%= @user.exchanges.where(confirmed: false).count %>
+                  </div>
+                <% end %>
+              <% end %>
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% else %>
