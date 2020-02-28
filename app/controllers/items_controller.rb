@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i(show edit update destroy)
   before_action :find_user
   skip_before_action :authenticate_user!, only: %i(index show)
+  before_action :notification_alert
 
   def index
     if params[:query].present?
@@ -81,5 +82,14 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :category, pictures: [])
+  end
+
+  def notification_alert
+    @user = current_user
+    alert = 0
+    if @user.notifications > alert
+      flash[:notice] = "You received a request for an item!"
+      alert +=1
+    end
   end
 end
