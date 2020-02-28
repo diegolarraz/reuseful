@@ -16,7 +16,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-12 col-lg-8 order-2">
+    <div class="col-12 col-lg-8 order-2 middle">
       <div class="show-info-upper">
         <h1>
           <%= @item.name.capitalize %>
@@ -54,7 +54,7 @@
            data-markers="<%= @markers.to_json %>"
            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
-    <div class="col-12 col-lg-4 order-2">
+    <div class="col-12 col-lg-4 order-2 middle">
       <div class="booking-form">
         <% if @user == @item.user %>
           <p><em>Thanks for donating an item with Reuseful!</em></p>
