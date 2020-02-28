@@ -9,14 +9,11 @@ class PagesController < ApplicationController
     @requests = @user.exchanges
     @exchanges = []
     @donations = []
-    @availables = []
     @items.each do |item|
-      if item.exchanges.last.nil?
-        @availables << item
-      else
-        if item.exchanges.last.confirmed
+      unless item.exchanges.last.nil?
+        if item.exchanges.last.confirmed && item.exchanges.last.date < Time.now
           @donations << item
-        else
+        elsif !item.exchanges.last.confirmed
           @exchanges << item.exchanges.last
         end
       end
@@ -27,7 +24,7 @@ class PagesController < ApplicationController
     exchange = Exchange.find(params[:exchange])
     exchange.confirmed = true
     exchange.save
+    flash[:notice] = "Collection confirmed!"
     redirect_to profile_path
   end
-
 end

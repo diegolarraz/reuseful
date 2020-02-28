@@ -12,35 +12,40 @@
 
         <div class="profile-footer p-4">
           <h6><%= @user.location %></h6>
+          <h6><%= pluralize @donations.count, "item" %> donated</h6>
            <%= link_to "Edit your profile", edit_user_registration_path, class: "edit-profile" %>
         </div>
       </div>
     </div>
 
     <div class="col-8">
-      <% @requests.each do |request| %>
-        <% if request.confirmed %>
-          <div class="listings">
-            <h5>Items to collect</h5>
-            <div class="exchange d-flex align-items-center justify-content-between">
-              <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
-              <p><%= request.location.capitalize %></p>
-              <p><%= request.date.to_formatted_s(:short)  %></p>
-            </div>
-          </div>
-        <% end %>
-
-        <% if !request.confirmed %>
-          <div class="listings">
-            <h5>Items requested</h5>
-            <div class="exchange d-flex align-items-center justify-content-between">
-              <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
-              <p><%= request.location.capitalize %></p>
-              <p><%= request.date.to_formatted_s(:short)  %></p>
-            </div>
-          </div>
-        <% end %>
+      <% unless @requests.where(confirmed: true).blank? %>
+        <div class="listings">
+          <h5>Items to collect</h5>
+          <% @requests.each do |request| %>
+            <% if request.confirmed %>
+              <div class="exchange d-flex align-items-center justify-content-between">
+                <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
+                <p><%= request.location.capitalize %></p>
+                <p><%= request.date.to_formatted_s(:short)  %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
+
+      <div class="listings">
+        <h5>Items requested</h5>
+        <% @requests.each do |request| %>
+          <% if !request.confirmed %>
+            <div class="exchange d-flex align-items-center justify-content-between">
+              <h6><%= link_to request.item.name.capitalize, item_path(request.item) %></h6>
+              <p><%= request.location.capitalize %></p>
+              <p><%= request.date.to_formatted_s(:short)  %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
       <% unless @exchanges.blank? %>
         <div class="listings">
@@ -48,7 +53,7 @@
           <% @exchanges.each do |exchange| %>
             <div class="exchange">
               <div class="donations d-flex align-items-center justify-content-between">
-                <h6><%= exchange.user.first_name.capitalize %> sent you a request for your <em><%= exchange.item.name %></em>.</h6>
+                <h6><%= exchange.user.first_name.capitalize %> sent you a request for your <em><%= link_to exchange.item.name, item_path(exchange.item) %></em>.</h6>
                 <p><%= exchange.location.capitalize %> - <%= exchange.date.to_formatted_s(:short) %></p>
               </div>
               <div class="to-confirm">
@@ -60,25 +65,6 @@
         </div>
       <% end %>
 
-      <% @availables.each do |item| %>
-        <div class="listings">
-          <h5>Items to be donated</h5>
-          <div class="donations d-flex align-items-center justify-content-between">
-            <h6><%= link_to item.name, item_path(item) %></h6>
-          </div>
-        </div>
-      <% end %>
-
-      <% unless @donations.blank? %>
-        <div class="listings">
-          <h5>My donated items</h5>
-          <% @donations.each do |item| %>
-            <div class="donations d-flex align-items-center justify-content-between">
-              <h6><%= link_to item.name, item_path(item) %></h6>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
     </div>
   </div>
   <div class="row align-items-center">
