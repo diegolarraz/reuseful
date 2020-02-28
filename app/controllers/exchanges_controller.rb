@@ -10,6 +10,7 @@ class ExchangesController < ApplicationController
     @exchange.item = @item
     @exchange.user = current_user
     if @exchange.save
+      flash[:notice] = "Collection request sent!"
       redirect_to profile_path
     else
       @user = current_user
