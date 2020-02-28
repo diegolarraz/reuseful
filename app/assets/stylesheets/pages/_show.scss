@@ -11,6 +11,10 @@
     margin: 0;
   }
 }
+
+.padding-top-show {
+  margin-top: 142px;
+}
 .show-info-upper a {
   color: rgba(0, 0, 0, 0.7);
   font-size: 24px;
@@ -30,6 +34,12 @@
   }
 }
 
+.item-status {
+  position: relative;
+  left: 16px;
+  bottom: 40px;
+}
+
 .booking-form {
   padding: 16px;
   border-radius: 3px;
@@ -45,6 +55,7 @@
 }
 
 .show-description {
+  margin-top: 16px;
   padding: 0 16px;
 }
 
@@ -56,11 +67,11 @@
 }
 
 .carousel-item {
-    height: 300px;
+    height: 600px;
     width: 100%;
   img {
     width: 100%;
-    height: 300px;
+    height: 600px;
     object-fit: cover;
     object-position: 50% 50%;
   }
