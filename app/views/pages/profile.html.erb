@@ -21,7 +21,7 @@
     <div class="col-8">
       <% unless @requests.where(confirmed: true).blank? %>
         <div class="listings">
-          <h5>Items to collect</h5>
+          <h5>Your upcoming collections</h5>
           <% @requests.each do |request| %>
             <% if request.confirmed %>
               <div class="exchange d-flex align-items-center justify-content-between">
@@ -44,6 +44,18 @@
                 <p><%= request.date.to_formatted_s(:short)  %></p>
               </div>
             <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% unless @planned_collections.blank? %>
+        <div class="listings">
+          <h5>Your upcoming donations</h5>
+          <% @planned_collections.each do |request| %>
+            <div class="exchange d-flex align-items-center justify-content-between">
+              <h6><%= link_to request.name.capitalize, item_path(request) %></h6>
+              <p><%= request.exchanges.last.date.to_formatted_s(:short)  %></p>
+            </div>
           <% end %>
         </div>
       <% end %>

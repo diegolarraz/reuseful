@@ -9,12 +9,16 @@ class PagesController < ApplicationController
     @user = current_user
     @items = @user.items
     @requests = @user.exchanges
+    @planned_collections = []
     @exchanges = []
     @donations = []
     @items.each do |item|
       unless item.exchanges.last.nil?
         if item.exchanges.last.confirmed && item.exchanges.last.date < Time.now
           @donations << item
+        elsif item.exchanges.last.confirmed
+          @planned_collections << item
+          @planned_collections.sort_by! { |item| item.exchanges.last.date }
         elsif !item.exchanges.last.confirmed
           @exchanges << item.exchanges.last
         end
