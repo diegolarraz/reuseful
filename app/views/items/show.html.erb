@@ -45,15 +45,6 @@
       </div>
       <div class="show-description">
         <p><%= @item.description.capitalize %></p>
-        <% if @item.exchanges.last %>
-          <% if @item.exchanges.last.confirmed %>
-            <p class="badge p-2 alert-dark">Item reserved</p>
-          <% else %>
-            <p class="badge p-2 alert-danger">Pending collection</p>
-          <% end %>
-        <% else %>
-          <p class="badge p-2 alert-success">Item available!</p>
-        <% end %>
       </div>
     </div>
     <div class="map-container col-12 order-3">
