@@ -12,13 +12,13 @@ a:hover {
 }
 
 .profile {
-  border: 2px solid #263062;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 10px;
-  box-shadow : 5px 5px 15px 5px rgba(0,0,0,0.21);
 }
 
 .listings {
-  box-shadow : 5px 5px 15px 5px rgba(0,0,0,0.21);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: white;
   margin-bottom: 40px;
   border-radius: 10px;
   padding: 8px 15px;
@@ -39,4 +39,9 @@ a:hover {
   h6 {
     margin-bottom:24px;
   }
+}
+.profile-footer {
+  background: white;
+  border-radius:10px;
+
 }
