@@ -25,8 +25,10 @@ class User < ApplicationRecord
   def notifications
     notifications = 0
     self.items.each do |item|
-      if item.exchanges.last.confirmed
-        notifications += 1
+      if item.exchanges.last
+        if item.exchanges.last.confirmed
+          notifications += 1
+        end
       end
     end
     return notifications
