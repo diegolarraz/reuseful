@@ -4,7 +4,8 @@
       <h1>Nothing matched your search</h1>
     <% else %>
     <div class="header py-2">
-      <h1><%= pluralize @items.count, params[:query] %> available for collection</h1>
+      <h1><%= @items.count %> available for collection</h1>
+    <% end %>
        <%= form_tag items_path, method: :get ,class: "form-inline" do %>
       <%= text_field_tag :query,
         params[:query],
@@ -89,7 +90,6 @@
         </div>
       <% end %>
     </div>
-
   </div>
 
 
