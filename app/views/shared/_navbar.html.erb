@@ -13,7 +13,7 @@
           <li><a href="/">About us</a></li>
           <% if user_signed_in? %>
             <li>
-              <% if @user.exchanges.where(confirmed: false).count %>
+              <% if @user.exchanges.where(confirmed: false).count != 0 %>
                 <%= link_to "/profile" do %>
                   <div class="notification">
                     <%= @user.exchanges.where(confirmed: false).count %>
