@@ -3,21 +3,30 @@
     <% if @items.empty? %>
       <h1>Nothing matched your search</h1>
     <% else %>
-    <div class="header py-2">
       <h1><%= pluralize(@items.count, 'item') %> available for collection</h1>
     <% end %>
-       <%= form_tag items_path, method: :get ,class: "form-inline" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Search items"
-      %>
-      <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
     </div>
-    <%= form_tag items_path, method: :get ,class: "form-inline" do %>
-      <%= select_tag "sort", options_for_select(%w(Newest Nearest)) %>
-      <%= submit_tag "Sort", class: "btn btn-primary" %>
-    <% end %>
+    <div class="header py-2 d-flex justify-content-between align-items-center">
+    <div class="search-bar">
+     <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search items"
+    %>
+    <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
+    </div>
+    <div class="sort-by">
+      <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+        <%= select_tag "sort", options_for_select(%w(Newest Nearest)) %>
+        <%= submit_tag "Sort", class: "btn btn-primary" %>
+      <% end %>
+
+    </div>
+
+
+
+    </div>
     <div class="cards">
       <% @items.each do |item| %>
       <div class="card-holder">
@@ -94,4 +103,3 @@
 
 
 
-</div>
