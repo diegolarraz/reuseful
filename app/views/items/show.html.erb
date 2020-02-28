@@ -1,9 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-8 order-1">
+    <div class="col-12 order-1">
       <% if @item.pictures %>
         <%= render 'shared/carousel' %>
       <% end %>
+      <div class="item-status">
+        <% if @item.exchanges.first %>
+          <% if @item.exchanges.first.confirmed %>
+            <p class="badge p-2 alert-dark">Item reserved</p>
+          <% else %>
+            <p class="badge p-2 alert-danger">Pending collection</p>
+          <% end %>
+        <% else %>
+          <p class="badge p-2 alert-success">Item available!</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-12 col-lg-8 order-2 middle">
       <div class="show-info-upper">
         <h1>
           <%= @item.name.capitalize %>
@@ -32,15 +45,6 @@
       </div>
       <div class="show-description">
         <p><%= @item.description.capitalize %></p>
-        <% if @item.exchanges.first %>
-          <% if @item.exchanges.first.confirmed %>
-            <p class="badge p-2 alert-dark">Item reserved</p>
-          <% else %>
-            <p class="badge p-2 alert-danger">Pending collection</p>
-          <% end %>
-        <% else %>
-          <p class="badge p-2 alert-success">Item available!</p>
-        <% end %>
       </div>
     </div>
     <div class="map-container col-12 order-3">
@@ -50,11 +54,13 @@
            data-markers="<%= @markers.to_json %>"
            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
-    <div class="col-12 col-lg-4 order-2">
+    <div class="col-12 col-lg-4 order-2 middle">
       <div class="booking-form">
         <% if @user == @item.user %>
           <p><em>Thanks for donating an item with Reuseful!</em></p>
-        <% elsif @user && @item.exchanges.first %>
+        <% elsif @user && @item.exchanges.last && @item.exchanges.last.user == @user %>
+          <p><em>You have already requested this item! Your request has been sent to <%= @item.user.first_name.capitalize %></em></p>
+        <% elsif @user && @item.exchanges.last %>
           <p><em>Another user has already requested this item!</em></p>
         <% elsif @user %>
           <h3>Book a collection</h3>

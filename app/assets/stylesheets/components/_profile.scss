@@ -1,18 +1,18 @@
-a:hover {
+.listings a:hover {
   text-decoration: none;
   font-weight: bold;
   color: white;
-
 }
 
 .profile-header {
-  background-color: #263062;
+  background-color: #0353a4;
   border-radius: 8px 8px 0px 0px;
-  color:white;
+  color: white;
 }
 
 .profile {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: 2px solid #0353a4;
   border-radius: 10px;
 }
 
@@ -30,7 +30,7 @@ a:hover {
 .edit-profile {
   padding: 10px;
   margin: 18px 0;
-  background-color: #263062;
+  background-color: #0353a4;
   color: white;
   border-radius: 10px;
 }

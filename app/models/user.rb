@@ -17,4 +17,20 @@ class User < ApplicationRecord
     distance_in_miles = self.distance_to(item.user).round(1)
     "#{distance_in_miles} miles away"
   end
+
+  def item_distance(item)
+    distance_in_miles = self.distance_to(item.user).round(1)
+  end
+
+  def notifications
+    notifications = 0
+    self.items.each do |item|
+      if item.exchanges.last
+        if item.exchanges.last.confirmed == false
+          notifications += 1
+        end
+      end
+    end
+    return notifications
+  end
 end

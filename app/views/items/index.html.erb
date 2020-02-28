@@ -1,23 +1,31 @@
 <div class="container">
-
-
   <div class="header py-3">
-
     <% if @items.empty? %>
       <h1>Nothing matched your search</h1>
     <% else %>
-      <h1><%= pluralize @items.count, params[:query] %> available for collection</h1>
+      <h1><%= pluralize(@items.count, 'item') %> available for collection</h1>
     <% end %>
+    </div>
+    <div class="header py-2 d-flex justify-content-between align-items-center">
+    <div class="search-bar">
+     <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search items"
+    %>
+    <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
+    </div>
+    <div class="sort-by">
+      <%= form_tag items_path, method: :get ,class: "form-inline" do %>
+        <%= select_tag "sort", options_for_select(%w(Newest Nearest)) %>
+        <%= submit_tag "Sort", class: "btn btn-primary" %>
+      <% end %>
+
+    </div>
 
 
 
-       <%= form_tag items_path, method: :get ,class: "form-inline" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Search items"
-      %>
-      <%= submit_tag "Begin", class: "btn btn-primary btn-sm" %>
     </div>
     <div class="cards">
       <% @items.each do |item| %>
@@ -29,6 +37,13 @@
             <% else %>
                 <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
             <% end %>
+
+            <div class="item-status">
+              <% if ((Time.now - item.created_at) / 1.minute).round < 60 %>
+                <p class="badge p-2 alert-warning">New!</p>
+              <% end %>
+            </div>
+
             <div class="card-index-info">
               <div class="card-index-info-top">
                 <h2><%= item.name.capitalize %></h2>
@@ -51,8 +66,8 @@
       <% end %>
     </div>
   <% end %>
-  <div class="listings">
-    <h5>My upcoming donations</h5>
+  <!-- <div class="container"> -->
+    <h5>My items</h5>
       <div class="cards">
       <% current_user.items.each do |item| %>
         <div class="card-holder">
@@ -69,14 +84,8 @@
                   <h2><%= item.category %></h2>
                 </div>
                 <div class="card-index-info-bottom">
-                  <p>Donated <%= item.time_since_posted %> by <%= item.user.first_name.capitalize %></p>
-                  <p>
-                    <% if @user && @user.latitude && item.user.latitude %>
-                      <%= @user.distance_from_item(item) %>
-                    <% else %>
-                      <%= item.user.location %>
-                    <% end %>
-                  </p>
+                  <p>Donated <%= item.time_since_posted %></p>
+
                 </div>
               </div>
             </div>
@@ -84,9 +93,7 @@
         </div>
       <% end %>
     </div>
-
-  </div>
-
+  <!-- </div> -->
 
 
-</div>
+

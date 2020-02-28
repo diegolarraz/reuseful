@@ -1,5 +1,5 @@
-.container {
-  margin-top: 80px;
+.padding-top {
+  margin-top: 112px;
 }
 
 .header {
@@ -17,12 +17,27 @@ a {
     font-size: 24px;
   }
 }
+.carousel-image {
+  img {
+    height: 600px;
+  }
+}
+#sort {
+  padding: 6px;
+}
 
+.carousel-inner {
+  height: 600px;
+}
 .cards {
   margin-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 32px;
+}
+
+.badge-category {
+  border-radius: 8px;
 }
 
 @media(max-width: 992px) {

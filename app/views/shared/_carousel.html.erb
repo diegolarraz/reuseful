@@ -3,7 +3,7 @@
     <% @item.pictures.each_with_index do |picture, index| %>
       <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
         <div class="carousel-image">
-          <%= cl_image_tag picture.key %>
+          <%= cl_image_tag picture.key, height: 600 %>
         </div>
       </div>
     <% end %>
@@ -17,3 +17,5 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<!-- some cmment -->

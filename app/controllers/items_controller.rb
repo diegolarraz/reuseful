@@ -2,7 +2,9 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i(show edit update destroy)
   before_action :find_user
   skip_before_action :authenticate_user!, only: %i(index show)
+  before_action :notification_alert
 
+  @@alert = 0
 
   def index
     if params[:query].present?
@@ -10,19 +12,23 @@ class ItemsController < ApplicationController
       @items = Item.where(sql_query, query: "%#{params[:query]}%")
     else
       @items = Item.where.not(user: @user)
-      @user = current_user
+      if params[:sort] == "Newest"
+        @items = @items.order(:created_at).reverse
+      elsif params[:sort] == "Nearest"
+       @items = @items.sort_by { |item| @user.item_distance(item) }
+      end
     end
   end
 
   def show
     @exchange = Exchange.new
-
-    @user = current_user
-    user_marker = {
-      lat: @user.latitude,
-      lng: @user.longitude,
-      image_url: helpers.asset_url('user_location')
-    }
+    if @user
+      user_marker = {
+        lat: @user.latitude,
+        lng: @user.longitude,
+        image_url: helpers.asset_url('user_location')
+      }
+    end
     item_marker = {
       lat: @item.user.latitude,
       lng: @item.user.longitude,
@@ -78,5 +84,13 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :category, pictures: [])
+  end
+
+  def notification_alert
+    @user = current_user
+    if @user.notifications > @@alert
+      flash[:notice] = "You received a request for an item!"
+      @@alert += 1
+    end
   end
 end
