@@ -28,6 +28,13 @@
             <% else %>
                 <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
             <% end %>
+
+            <div class="item-status">
+              <% if ((Time.now - item.created_at) / 1.minute).round < 60 %>
+                <p class="badge p-2 alert-warning">New!</p>
+              <% end %>
+            </div>
+
             <div class="card-index-info">
               <div class="card-index-info-top">
                 <h2><%= item.name.capitalize %></h2>
