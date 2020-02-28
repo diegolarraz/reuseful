@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i(index show)
   before_action :notification_alert
 
+  @@alert = 0
+
   def index
     if params[:query].present?
       sql_query = "category ILIKE :query OR name ILIKE :query"
@@ -86,10 +88,9 @@ class ItemsController < ApplicationController
 
   def notification_alert
     @user = current_user
-    alert = 0
-    if @user.notifications > alert
+    if @user.notifications > @@alert
       flash[:notice] = "You received a request for an item!"
-      alert +=1
+      @@alert += 1
     end
   end
 end
