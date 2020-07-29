@@ -19,7 +19,12 @@ class User < ApplicationRecord
   end
 
   def item_distance(item)
-    distance_in_miles = self.distance_to(item.user).round(1)
+    distance_in_miles = self.distance_to(item.user)
+    unless distance_in_miles.nil?
+      return distance_in_miles.round(1)
+    else
+      return 10
+    end
   end
 
   def notifications
